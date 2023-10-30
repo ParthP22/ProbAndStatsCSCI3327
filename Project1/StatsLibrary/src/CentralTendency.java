@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class CentralTendency<E>{
+public class CentralTendency{
 
     public static double findMean(List<Double> points){
         double sum = 0;
