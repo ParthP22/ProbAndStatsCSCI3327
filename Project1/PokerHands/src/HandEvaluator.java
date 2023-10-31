@@ -12,7 +12,7 @@ import java.util.*;
  * flush, and royal flush.
  *
  * These probabilities will be calculated for hand sizes of 5 and 7, and will be printed
- * to their respective .csv files
+ * to their respective .csv files when executing the <code>run</code> method
  *
  */
 public class HandEvaluator {
@@ -28,7 +28,6 @@ public class HandEvaluator {
 
 
 
-    //Note to self: make private later
     /**
      * This HashMap will convert the String values that are set for each card
      * to a number, so that the values of cards can be compared
@@ -73,6 +72,10 @@ public class HandEvaluator {
         this.hand = new ArrayList<>();
         this.deck = new Stack<>();
         this.generateDeck();
+
+        dealersRightHand = new Stack<>();
+        dealersLeftHand = new Stack<>();
+
         for(int i = 0; i < 100; i++){
             this.shuffleDeck();
         }
@@ -114,14 +117,16 @@ public class HandEvaluator {
         this.handProbabilitiesPercentage.put("royalFlush", 0.0);
         this.handProbabilitiesPercentage.put("highCard", 0.0);
 
-        dealersRightHand = new Stack<>();
-        dealersLeftHand = new Stack<>();
+
 
 
     }
 
     /**
-     * 
+     * This method generates the deck to be used in this class
+     * by generating the cards for each of the 4 suites:
+     * hearts, spades, diamonds, and clubs.
+     *
      */
     private void generateDeck(){
         generateSuite("heart");
@@ -131,6 +136,10 @@ public class HandEvaluator {
     }
 
     /**
+     * This method generates all 13 cards of a suite:
+     * Aces, 2's, 3's, 4's, 5's, 6's, 7's, 8's, 9's
+     * 10's, Jacks, Queens, Kings.
+     *
      * @param suite
      */
     private void generateSuite(String suite){
@@ -145,7 +154,8 @@ public class HandEvaluator {
     }
 
     /**
-     * 
+     * This method shuffles the deck of cards once.
+     *
      */
     public void shuffleDeck(){
 
@@ -174,7 +184,9 @@ public class HandEvaluator {
     }
 
     /**
-     * @param handSize
+     * This method draws a hand of cards with a specified hand size
+     *
+     * @param handSize the number of cards to be drawn for a hand
      */
     public void drawHand(int handSize){
         if(handSize <= 5){
@@ -195,7 +207,9 @@ public class HandEvaluator {
     }
 
     /**
-     * 
+     * This function adds all the cards back into
+     * deck, and then shuffles them 100 times to randomize it.
+     *
      */
     public void resetDeck(){
         int handSize = hand.size();
@@ -209,7 +223,12 @@ public class HandEvaluator {
     }
 
     /**
-     * @param numTests
+     * This method is for testing purposes only.
+     * This method will randomly draw a hand from the deck,
+     * where the hand size ranges from 5 to 7, a set number
+     * of times.
+     *
+     * @param numTests the number of times that the drawHand method will be tested.
      */
     public void handTester(int numTests){
         for(int i = 0; i < numTests; i++){
@@ -219,7 +238,10 @@ public class HandEvaluator {
     }
 
     /**
-     * @return
+     * This method is for testing purpose only.
+     * It will allow the user to print the current hand of cards that was drawn.
+     *
+     * @return a String of the values and the suites corresponding to each card in the hand
      */
     public String printHand(){
         StringBuilder ret = new StringBuilder();
@@ -230,7 +252,11 @@ public class HandEvaluator {
     }
 
     /**
-     * @return
+     * This method is for testing purposes only.
+     * It will allow the user to print the remaining cards in the deck,
+     * as well as the current number of cards within the deck.
+     *
+     * @return a String of the values and the suites corresponding to each card in the deck, and the deck size
      */
     public String printDeck(){
         StringBuilder ret = new StringBuilder();
@@ -241,8 +267,11 @@ public class HandEvaluator {
     }
 
     /**
-     * @param handSize
-     * @param sampleSpace
+     * This method will print the probabilities that have been calculated for each hand
+     * to a .csv file for its respective hand size.
+     *
+     * @param handSize the number of cards currently in the player's hand
+     * @param sampleSpace the number of trials performed to calculate the probabilities
      * @throws IOException
      */
     public void printProbabilityToCSV(int handSize, int sampleSpace) throws IOException {
@@ -251,22 +280,39 @@ public class HandEvaluator {
 
         Writer writer = new FileWriter("handSizeOf"+handSize+".csv");
         BufferedWriter bufferedWriter = new BufferedWriter(writer);
-        bufferedWriter.write("Hand Type, Probability (%)");
+        bufferedWriter.write("Hand Type: Probability (%)");
         bufferedWriter.newLine();
         for(Map.Entry<String,Double> entry : handProbabilitiesPercentage.entrySet()){
-            bufferedWriter.write(entry.getKey() + ", " + entry.getValue());
+            //The Math.floor(entry.getValue() * 10000)/10000 is to truncate the repeating decimals
+            bufferedWriter.write(entry.getKey() + ", " + Math.floor(entry.getValue() * 10000)/10000);
             bufferedWriter.newLine();
         }
 
         bufferedWriter.close();
         writer.close();
 
+        this.printProbabilitiesToConsole(handSize);
+
+    }
+
+    public void printProbabilitiesToConsole(int handSize){
+        System.out.println("Hand Size: " + handSize + ", Hand Type, Probability (%)");
+        for(Map.Entry<String,Double> entry : handProbabilitiesPercentage.entrySet()){
+            //The Math.floor(entry.getValue() * 10000)/10000 is to truncate the repeating decimals
+            System.out.println((entry.getKey()) + ", " + Math.floor(entry.getValue() * 10000)/10000);
+        }
+        System.out.println("\n\n");
     }
 
 
     /**
-     * @param handSize
-     * @param sampleSpace
+     * This function will calculate the number of occurrences of each hand, and
+     * store it on the countHands HashMap.
+     * Then, it will calculate the probability of these occurrences as a percentage,
+     * and map that to the handProbabilitiesPercentage HashMap.
+     *
+     * @param handSize the number of cards per hand
+     * @param sampleSpace the number of total trials performed
      */
     public void calculateProbabilityOfHands(int handSize, int sampleSpace){
 
@@ -323,7 +369,11 @@ public class HandEvaluator {
     }
 
     /**
-     * @return
+     * This function will determine whether the current hand is a pair or not.
+     * Note: if there is more than one pair, then it will return false, since
+     * we are not calculating double or triple pairs.
+     *
+     * @return true if there is exactly 1 pair in the hand, false otherwise
      */
     public boolean isPair(){
 
@@ -342,7 +392,10 @@ public class HandEvaluator {
     }
 
     /**
-     * @return
+     * This function will determine whether the current hand is a three of kind,
+     * meaning that the current hand has 3 cards of the same value
+     *
+     * @return true if this hand is a three of a kind, false otherwise
      */
     public boolean isThreeOfAKind(){
 
@@ -363,7 +416,10 @@ public class HandEvaluator {
 
 
     /**
-     * @return
+     * This function will determine whether the current hand is a four of kind,
+     * meaning that the current hand has 4 cards of the same value
+     *
+     * @return true if this hand is a four of a kind, false otherwise
      */
     public boolean isFourOfAKind(){
 
@@ -384,7 +440,10 @@ public class HandEvaluator {
 
     
     /**
-     * @return
+     * This function will determine if the current hand is a straight,
+     * and both Ace high straights and Ace low straights are considered
+     *
+     * @return true if the current hand is a straight, false otherwise
      */
     public boolean isStraight(){
         return isAceLowStraight() || isAceHighStraight();
@@ -392,9 +451,16 @@ public class HandEvaluator {
     }
 
     /**
-     * @return
+     * This function is a helper function to the <code>isStraight</code> method,
+     * and it will determine whether a hand is a straight or not, including
+     * an Ace high straight: 10-J-Q-K-A
+     *
+     * @return true if the current hand is a straight, false otherwise
      */
     private boolean isAceHighStraight(){
+        /* I have created a new HashMap specifically for Ace high straights, because I originally
+           equated the Ace to a 1. So here, an Ace will be equated to a 14, to be greater than the King.
+         */
         HashMap<String,Integer> valueToNumericalForAceHigh = new HashMap<>();
 
         valueToNumericalForAceHigh.put("A",14);
@@ -418,7 +484,11 @@ public class HandEvaluator {
     }
 
     /**
-     * @return
+     * This function is a helper function to the <code>isStraight</code> method,
+     * and it will determine whether a hand is a straight or not, including
+     * an Ace low straight: A-1-2-3-4
+     *
+     * @return true if the current hand is a straight, false otherwise
      */
     private boolean isAceLowStraight(){
         this.sortHand(valueToNumerical);
@@ -433,7 +503,10 @@ public class HandEvaluator {
     }
 
     /**
-     * @return
+     * This function will determine if the current hand is a flush, meaning
+     * that all cards are from the same suite.
+     *
+     * @return true if the current hand is a flush, false otherwise.
      */
     public boolean isFlush(){
         String suite = hand.get(0).getSuite();
@@ -446,7 +519,10 @@ public class HandEvaluator {
     }
 
     /**
-     * @return
+     * This function will determine if the current hand is a full house,
+     * meaning that there are 2 cards of one value, and 3 cards of another value
+     *
+     * @return true if the current hand is a full house, false otherwise
      */
     public boolean isFullHouse(){
 
@@ -468,7 +544,11 @@ public class HandEvaluator {
     }
 
     /**
-     * @return
+     * This function will determine if the current hand is a straight flush,
+     * meaning that it is both a straight and a flush, by calling the <code>isStraight</code>
+     * and <code>isFlush</code> methods.
+     *
+     * @return true if the current hand is a straight flush, false otherwise
      */
     public boolean isStraightFlush(){
 
@@ -476,7 +556,11 @@ public class HandEvaluator {
     }
 
     /**
-     * @return
+     * This function will determine if the current hand is a royal flush,
+     * meaning that it has a 10, Jack, Queen, King, and Ace all from the
+     * same suite.
+     *
+     * @return true if the current hand is a royal flush, false otherwise.
      */
     public boolean isRoyalFlush(){
 
@@ -516,7 +600,11 @@ public class HandEvaluator {
 
 
     /**
-     * @return
+     * This function is for testing purposes only.
+     * This function will determine if the current hand is a high card by
+     * checking if the hand does not qualify as any other hand.
+     *
+     * @return true if the current hand is a high card, false otherwise.
      */
     public boolean isHighCard(){
 
@@ -536,8 +624,12 @@ public class HandEvaluator {
     }
 
     /**
-     * @param hands
-     * @return
+     * This function will determine if the current hand is a high card by
+     * traversing a boolean array that was filled out by <code>calculateProbabilityOfHands</code>
+     * method for each of the hand types. If all the other hands are false, then it is a high card.
+     *
+     * @param hands the boolean array containing whether this hand qualifies as another type of hand
+     * @return true if the current hand is a high card, false otherwise
      */
     public boolean isHighCard(boolean[] hands){
         boolean highCard = false;
@@ -547,9 +639,12 @@ public class HandEvaluator {
         return !highCard;
     }
 
-    //The method performs insertionSort to sort the hand in non-decreasing order
     /**
-     * @param valueToNumericalMap
+     * This method sorts the current hand by performing my implementation of
+     * insertion sort in non-decreasing order, which uses a HashMap to compare
+     * the values of the cards.
+     *
+     * @param valueToNumericalMap the HashMap containing the mappings of the cards to their respective numerical values
      */
     public void sortHand(HashMap<String,Integer> valueToNumericalMap){
         for(int i = 1; i < hand.size(); i++){
@@ -562,34 +657,23 @@ public class HandEvaluator {
         }
     }
 
-    /**
-     * 
-     */
-    public void sortHand(){
-        for(int i = 1; i < hand.size(); i++){
-            Card key = hand.get(i);
-            int j = i - 1;
-            for(; j >= 0 && this.compareValue(key, hand.get(j), this.valueToNumerical) > 0; j--){
-                hand.set(j + 1, hand.get(j));
-            }
-            hand.set(j + 1, key);
-        }
-    }
-
-
 
     /**
-     * @param card1
-     * @param card2
-     * @param valueToNumericalMap
-     * @return
+     * This function will compare the values of the cards and return a difference of their values,
+     * which will determine which card has a greater value
+     *
+     * @param card1 a card to be compared
+     * @param card2 another card to be compared
+     * @param valueToNumericalMap the HashMap containing the mappings of the cards to their respective numerical values
+     * @return a negative integer if card1 is greater in value, or 0 if card1 and card2 have equal values, and a positive integer if card2 is greater
      */
     private int compareValue(Card card1, Card card2, HashMap<String,Integer> valueToNumericalMap){
         return valueToNumericalMap.get(card2.getValue()) - valueToNumericalMap.get(card1.getValue());
     }
 
     /**
-     * 
+     * This function will keep track of the number occurrences for each card in a hand for a single trial,
+     * by using a HashMap.
      */
     private void handValuesToMap(){
         handValuesOccurrences.clear();
@@ -599,10 +683,20 @@ public class HandEvaluator {
     }
 
     /**
+     * This function will print the probabilities to the terminal,
+     * as well as print the probabilities of hand size 5 and hand size 7 to
+     * their respective .csv files.
+     *
      * @throws IOException
      */
     public void run() throws IOException {
         this.printProbabilityToCSV(5,100000);
+
+        //This is to reset the counts and probabilities to start off fresh
+        this.handValuesOccurrences.clear();
+        this.countHands.clear();
+        this.handProbabilitiesPercentage.clear();
+
         this.printProbabilityToCSV(7,100000);
     }
 

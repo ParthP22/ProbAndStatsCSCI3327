@@ -1,10 +1,10 @@
-Hand Type, Probability (%)
-straight, 0.402
+Hand Type: Probability (%)
+straight, 0.406
 straightFlush, 0.003
-threeOfAKind, 2.182
-flush, 0.193
-fullHouse, 0.14100000000000001
-highCard, 55.11000000000001
-pair, 42.231
-fourOfAKind, 0.026
+threeOfAKind, 2.264
+flush, 0.2239
+fullHouse, 0.147
+highCard, 54.751
+pair, 42.485
+fourOfAKind, 0.02
 royalFlush, 0.001
