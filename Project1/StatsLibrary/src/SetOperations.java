@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.Set;
 
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  * 
  * This <code>SetOperations</code> class creates a set structure, and 
  * provides the functions necessary to perform the basic set operations 

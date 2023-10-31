@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  *
  */
 public class Factory {

@@ -1,7 +1,7 @@
 import java.io.IOException;
 
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  *
  * This <code>HandsTester</code> program will run code to print the probabilities of
  * the 9 Poker hand types to the console for hand sizes of 5 and 7,

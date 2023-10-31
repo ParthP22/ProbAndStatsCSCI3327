@@ -5,7 +5,7 @@ import java.io.Writer;
 import java.util.*;
 
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  *
  * This program will calculate the probabilities (as percentages) of the following
  * poker hands: pair, 3 of a kind, 4 of a kind, straight, flush, full house, straight

@@ -1,7 +1,7 @@
 import java.math.BigInteger;
 
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  *
  * This <code>Factorial/code> class provides a function to calculate
  * a factorial using <code>BigInteger</code>

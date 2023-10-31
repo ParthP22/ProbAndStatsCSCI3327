@@ -3,7 +3,7 @@ import java.util.Deque;
 import java.util.Stack;
 
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  *
  * This is a class used to create the Card objects, which have the following
  * attributes: suite and value.

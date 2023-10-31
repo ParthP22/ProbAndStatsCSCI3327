@@ -1,7 +1,7 @@
 import java.io.IOException;
 
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  *
  * This <code>CarFactoryTest</code> class is used to execute <code>run</code>
  * method of the <code>Factory</code> class.

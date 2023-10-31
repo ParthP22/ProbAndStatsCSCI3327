@@ -1,5 +1,5 @@
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  *
  * The <code>Game</code> class will be tested in the main method below
  * via the <code>run</code> method.

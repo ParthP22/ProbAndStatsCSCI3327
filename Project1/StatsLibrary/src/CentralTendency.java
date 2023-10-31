@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  *
  * This <code>CentralTendency</code> class provides functions to
  * calculate the mean, median, and mode of a given list of data points.

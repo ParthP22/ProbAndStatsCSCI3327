@@ -1,5 +1,5 @@
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  *
  * This <code>TchebysheffsTheorem</code> class will calculate
  * the minimum percentage of where the values lie on the distribution for a

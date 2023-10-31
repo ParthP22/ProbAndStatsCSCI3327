@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  * 
  * This <code>Variance</code> class provides the functions to calculate
  * variance and standard deviation, either based on a set of data points,

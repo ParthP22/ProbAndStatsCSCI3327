@@ -1,5 +1,5 @@
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  *
  * This <code>IllegalProbabilityException</> class extends the Exception class
  * and is used any time there is an impossible probability or a probability

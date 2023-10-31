@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  *
  * This program will compute the probabilites of the Monte's Three Door Problem.
  *

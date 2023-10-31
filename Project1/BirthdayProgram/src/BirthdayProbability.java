@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  *
  * This <code>BirthdayProbability</code> class is used to calculate the
  * probability of at least two people in the same room having the same birthday,

@@ -1,7 +1,7 @@
 import java.math.BigDecimal;
 
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  *
  * This <code>Combinatorics</code> class provides the combination
  * and permutation functions that are used throughout probability

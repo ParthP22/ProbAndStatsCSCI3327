@@ -1,5 +1,5 @@
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  *
  * This <code>Distribution</code> class is used to calculate the probabilities,
  * expected, variance, and standard deviation of the following probability

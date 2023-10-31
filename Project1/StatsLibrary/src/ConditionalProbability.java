@@ -1,5 +1,5 @@
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  *
  * This <code>ConditionalProbability</code> class provides methods to calculate
  * conditional probability, Bayes' Theorem, and a function to determine independence

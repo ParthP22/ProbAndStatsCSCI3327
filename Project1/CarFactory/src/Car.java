@@ -1,5 +1,5 @@
 /**
- * @author parthpatel0426
+ * @author Parth Patel
  *
  * This <code>Car/code> class is used to create Car objects,
  * which will then be used in the <code>Factory</code>
