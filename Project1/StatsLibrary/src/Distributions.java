@@ -232,7 +232,7 @@ public class Distributions {
         if(n < 0){
             throw new IllegalArgumentException("\'n\' cannot be negative");
         }
-        return (double)n * (r / N) * ((N - r) / N) * ((N - n) / (N - 1));
+        return (double)n * ((double)r / N) * ((double)(N - r) / N) * ((double)(N - n) / (N - 1));
     }
 
     /**
@@ -260,8 +260,8 @@ public class Distributions {
      * @throws IllegalProbabilityException
      */
     public static double findNegativeBinomialDistribution(int r, int y, double p, double q) throws IllegalProbabilityException {
-        if(y > r){
-            throw new IllegalArgumentException("\'y\' cannot be greater than \'r\'");
+        if(y < r){
+            throw new IllegalArgumentException("\'y\' cannot be less than \'r\'");
         }
         if(p < 0 || p > 1){
             throw new IllegalProbabilityException("\'p\' is out of bounds");

@@ -78,7 +78,6 @@ public class CentralTendency{
         }
 
         Collections.sort(points);
-        printPoints(points);
         int size = points.size();
         if(size % 2 == 1){
             return points.get(size/2);

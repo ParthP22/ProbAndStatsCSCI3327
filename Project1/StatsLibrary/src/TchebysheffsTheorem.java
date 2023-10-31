@@ -23,22 +23,24 @@ public class TchebysheffsTheorem {
      * This function will calculate the minimum percentage of where the values
      * lie on the distribution for a specific number of standard deviations.
      *
-     * @param withinNumber the number of standard deviations
+     * @param upperBound the value of the upper bound on the distribution
+     * @param expected the expected value, or mean, of the distribution
      * @param standardDeviation the double value for standard deviation
      * @return the minimum percentage of where the distributions lie
      */
-    public static double findTchebysheffsTheorem(double withinNumber, double standardDeviation){
-       return 1 - 1/(Math.pow(findNumberOfStandardDeviations(withinNumber,standardDeviation),2));
+    public static double findTchebysheffsTheorem(double upperBound, double expected, double standardDeviation){
+       return 1 - 1/(Math.pow(findNumberOfStandardDeviations(upperBound,expected,standardDeviation),2));
     }
 
     /**
      * This function will calculate the number of standard deviations.
      *
-     * @param withinNumber the upper bound of the data minus the mean
+     * @param upperBound the value of the upper bound on the distribution
+     * @param expected the expected value, or mean, of the distribution
      * @param standardDeviation the double value for the standard deviation
      * @return a double value for the number of standard deviations
      */
-    public static double findNumberOfStandardDeviations(double withinNumber, double standardDeviation){
-        return withinNumber/standardDeviation;
+    public static double findNumberOfStandardDeviations(double upperBound, double expected, double standardDeviation){
+        return (upperBound - expected)/standardDeviation;
     }
 }
