@@ -1,7 +1,20 @@
 import java.util.*;
 
+/**
+ * @author parthpatel0426
+ *
+ * This <code>CentralTendency</code> class provides functions to
+ * calculate the mean, median, and mode of a given list of data points.
+ *
+ */
 public class CentralTendency{
 
+    /**
+     * Calculates the average, or mean, based on the data points
+     *
+     * @param points an <code>ArrayList</code> of double values for the data points
+     * @return a double value for the mean
+     */
     public static double findMean(List<Double> points){
         double sum = 0;
         for(double point : points){
@@ -11,6 +24,13 @@ public class CentralTendency{
     }
 
 
+    /**
+     * Calculates the mode(s) of the data points (there can be multiple values
+     * that have the same number of highest occurrences).
+     *
+     * @param points an <code>ArrayList</code> of double values for the data points
+     * @return an array of doubles consisting of all the modes among these data points
+     */
     public static double[] findMode(List<Double> points){
         HashMap<Double,Integer> numOfOccurrences = new HashMap<>();
         for(Double element : points){
@@ -43,6 +63,12 @@ public class CentralTendency{
         return modes;
     }
 
+    /**
+     * Calculates the median, or middle, of these data points
+     *
+     * @param points an <code>ArrayList</code> of double values for the data points
+     * @return a double value for the median
+     */
     public static double findMedian(List<Double> points){
         if(points.size() == 0){
             return Double.MIN_VALUE;
@@ -62,6 +88,11 @@ public class CentralTendency{
         }
     }
 
+    /**
+     * This function will print the data points to the console.
+     *
+     * @param points an <code>ArrayList</code> of double values for the data points
+     */
     public static void printPoints(List<Double> points){
         for(Double point : points){
             System.out.print(point + ", ");

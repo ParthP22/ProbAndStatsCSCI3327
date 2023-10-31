@@ -1,7 +1,23 @@
 import java.math.BigDecimal;
 
+/**
+ * @author parthpatel0426
+ *
+ * This <code>Combinatorics</code> class provides the combination
+ * and permutation functions that are used throughout probability
+ * and statistics.
+ *
+ */
 public class Combinatorics {
 
+    /**
+     * This function performs the combinatorial operation known as
+     * the combination.
+     *
+     * @param n the total number that we are choosing from
+     * @param r the amount that we are picking
+     * @return a double value of the combination of n choose r
+     */
     public static double findCombination(int n, int r){
         if(n < 0){
             throw new IllegalArgumentException("\'n\' cannot be less than 0");
@@ -17,6 +33,14 @@ public class Combinatorics {
 
     }
 
+    /**
+     * This function performs the combinatorial operation known as
+     * the permutation.
+     *
+     * @param n the total number that we are choosing from
+     * @param r the amount that we are picking
+     * @return a double value of the permutation of n choose r
+     */
     public static double findPermutation(int n, int r){
         if(n < 0){
             throw new IllegalArgumentException("\'n\' cannot be less than 0");

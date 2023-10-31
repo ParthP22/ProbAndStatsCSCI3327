@@ -27,8 +27,8 @@ public class Factory {
         for(int i = 0; i < num; i++){
             int year = (int)(Math.random()*30) + 1975;
             int miles = (int)(Math.random()*250000);
-            skew = (int)(Math.random() * 25) + 1;
-            if(skew == 25){
+            skew = (int)(Math.random() * 20) + 1;
+            if(skew == 20){
                 String carType = Car.carTypes[Car.carTypes.length - 1];
                 String color = "red";
                 cars.add(new Car(carType,year,color,miles));
@@ -70,6 +70,11 @@ public class Factory {
 
         reader.close();
 
+    }
+
+    public void run(int totalCars) throws IOException {
+        this.generateCSV(1000);
+        this.readCSV();
     }
 
 
