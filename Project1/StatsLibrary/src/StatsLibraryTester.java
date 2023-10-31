@@ -64,7 +64,7 @@ public class StatsLibraryTester {
 
         System.out.println("Conditional Probability of A given B, where: probability of A intersect B = 0.5, and probability of B = 0.2" + ConditionalProbability.findAGivenB(0.5,0.2));
 
-        
+
 
 
     }

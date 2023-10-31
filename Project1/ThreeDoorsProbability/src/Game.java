@@ -219,7 +219,7 @@ public class Game {
      */
     public void runGame(){
         System.out.println("The probability of winning after not switching doors: " + this.findProbability1() * 100 + "%");
-        System.out.println("The probability of winning after switching doors: " + this.findProbability2() * 100 + "%");
+        System.out.println("The probability of winning after switching doors: " + Math.floor(this.findProbability2() * 10000) / 10000 * 100 + "%");
     }
 
 }
